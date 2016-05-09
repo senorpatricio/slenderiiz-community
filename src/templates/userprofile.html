@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<h1>Slenderiiz Community | Profile</h1>
+
+
+<div class="row">
+    <div class="col-sm-5 col-sm-offset-1 pull-left">
+        <h1>{{ user.username }}</h1>
+        <img src="{{ instance.prof_image }}" alt="" class=""/>
+    </div>
+
+    <div class="col-sm-5 pull-right">
+        {% if instance.bio %}
+
+
+            <p>{{ instance.bio }}</p>
+            <p>{{ instance.full_name }}</p>
+            <p>{{ instance.starting_weight }}</p>
+            <p>{{ instance.current_weight }}</p>
+            <p>{{ instance.timestamp }}</p>
+
+        {% else %}
+        <p>Edit your profile to add information</p>
+        {% endif %}
+        <a href="{% url 'userprofile:update_profile' %}">Edit your profile</a>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+
+

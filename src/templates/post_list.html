@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-sm-12">
+    <ul id="pounds-filter">
+{#        <li role="presentation"><h3>Welcome {% if user.get_full_name %}#}
+{#            {{ user.get_full_name }}#}
+{#            {% else %}#}
+{#            {{ user.username }}#}
+{#            {% endif %}!</h3>#}
+{#        </li>#}
+        {#<h1>{{ title }}</h1>#}
+
+        {#    <form action="" method="GET" class="row">#}
+        {#    <div class="input-group">#}
+        {#        <input type="text" name="q" placeholder="Search posts" class="form-control" value="{{ request.GET.q }}"/>#}
+        {#        <span class="input-group-btn">#}
+        {#        <!-- <input type="submit" value="Search" class="btn btn-default"/> -->#}
+        {#        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>#}
+        {#        </span>#}
+        {##}
+        {#    </div>#}
+        {#    </form>#}
+        {#<form action="" method="GET" >#}
+        {#    <input type="text" name="q" placeholder="Search posts" class="form-control" value="{{ request.GET.q }}"/>#}
+        {#    <button type="submit"><i class="fa fa-search"></i></button>#}
+        {#</form>#}
+        <li role="presentation">
+            <form action="" method="GET" >
+                <input type="hidden" name="q" value="0" class="form-control" value="{{ request.GET.q }}"/>
+                <button type="submit"> All</button>
+            </form>
+        </li>
+
+        <li role="presentation">
+            <form action="" method="GET" >
+                <input type="hidden" name="q" value="25" class="form-control" value="{{ request.GET.q }}"/>
+                <button type="submit"> 25 lbs</button>
+            </form>
+        </li>
+
+        <li role="presentation">
+            <form action="" method="GET" >
+                <input type="hidden" name="q" value="50" class="form-control" value="{{ request.GET.q }}"/>
+                <button type="submit"> 50 lbs</button>
+            </form>
+        </li>
+        <li role="presentation">
+            <form action="" method="GET" >
+                <input type="hidden" name="q" value="75" class="form-control" value="{{ request.GET.q }}"/>
+                <button type="submit"> 75 lbs</button>
+            </form>
+        </li>
+        <li role="presentation">
+            <form action="" method="GET" >
+                <input type="hidden" name="q" value="100" class="form-control" value="{{ request.GET.q }}"/>
+                <button type="submit"> 100 lbs</button>
+            </form>
+        </li>
+        <li role="presentation">
+            <form action="" method="GET" >
+                <input type="hidden" name="q" value="150" class="form-control" value="{{ request.GET.q }}"/>
+                <button type="submit"> 150 lbs</button>
+            </form>
+        </li>
+        <li>
+            <a href="{% url 'posts:create' %}">Upload</a>
+        </li>
+    </ul> <!-- end pounds-filter -->
+    <hr>
+    <br>
+</div>
+
+<div class="row">
+
+
+  <div class="col-sm-12">
+
+
+        <div class="row no-gutter">
+        {% for obj in object_list %}
+            {% if not obj.draft %}
+
+            <div class="col-sm-3 col-md-2">
+                <div class="grid-beforeafter orange">
+
+                    {% if obj.beforeimage %}
+                        <div class="grid-before-photo">
+                            <img src="{{ obj.beforeimage.url }}" class="img-responsive" alt="">
+                        </div>
+                        <div class="grid-after-photo">
+                            <img src="{{ obj.afterimage.url }}" class="img-responsive" alt="">
+                        </div>
+                    {% endif %}
+
+                    <div class="overlay">
+                        <div class="caption">
+                            <h3 class="overlay-name">{{ obj.first_name }} {{ obj.last_name }}</h3>
+
+                            <h2 class="overlay-weight">-{{ obj.pounds_lost }}</h2>
+                            <p class="overlay-text">Pounds</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% endif %} {# end draft if #}
+        {% endfor %}
+        </div> <!-- end row -->
+
+  </div>
+
+
+
+ {% cycle "" "</div><div class='row'>" %}
+
+
+
+
+</div>
+
+    <div class="pagination">
+	    <span class="step-links">
+	        {% if object_list.has_previous %}
+	            <a href="?page={{ object_list.previous_page_number }}
+	            {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+	        {% endif %}
+
+	        <span class="current">
+	            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+	        </span>
+
+	        {% if object_list.has_next %}
+	            <a href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+	        {% endif %}
+	    </span>
+	</div>
+{% endblock content %}
+
+

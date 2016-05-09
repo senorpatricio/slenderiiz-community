@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>{% block head_title %}Slenderiiz Community{% endblock head_title %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icon.png' %}"/>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+{#    <style>#}
+{#        html,body {#}
+{#            background-image: url({% static "images/Xceler8Backgroundf3f3f3.png" %});#}
+{#        }#}
+{##}
+{#    </style>#}
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block head_extra %} {% endblock head_extra %}
+</head>
+<body>
+
+<ul class="nav nav-pills pull-left">
+    <li role="presentation"><img src="{% static 'images/Slenderiiz_Logo_Orange.png' %}" alt="" id="header-logo"></li>
+
+
+{#    <li role="presentation"><a href="{% url 'posts:create' %}">Create a post</a></li>#}
+    {% if user.is_authenticated %}
+
+    {% endif %}
+</ul>
+
+<ul class="nav nav-pills pull-right">
+    <li role="presentation"><a href="{% url 'posts:list' %}">Home</a></li>
+    {% if not user.is_authenticated %}
+    <li role="presentation"><a href="{% url 'auth_login' %}">Login</a></li>
+    <li role="presentation"><a href="{% url 'registration_register' %}">Register</a></li>
+    {% elif user.is_authenticated %}
+    <li role="presentation"><a href="{% url 'auth_logout' %}">Logout</a></li>
+
+    {% endif %}
+
+</ul>
+
+
+
+{% if messages %}
+	<div class="messages">
+		
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+
+	</div>
+{% endif %}
+
+<div class="container">
+<div class="header">
+	
+</div>
+
+<div class="nav">
+	  
+</div>
+{% block content %} {% endblock content %}
+</div>
+
+
+<script   src="http://code.jquery.com/jquery-1.12.2.min.js"
+          integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var pathname = window.location.pathname;
+        if(pathname.indexOf('register') > -1) {
+            $('body').css('background-image', 'url({% static "images/PowerBoostBackgroundF2F2F2.png" %})').css('background-size', 'cover');
+            $('#id_username').click(function () {
+                $('#id_username').css('margin-bottom', '0');
+                $('#hint_id_username').css('display', 'block');
+            });
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var pathname = window.location.pathname;
+        if(pathname.indexOf('login') > -1) {
+            $('#id_username').css('margin-bottom', '35px');
+            $('#hint_id_username').css('display', 'block');
+            $('body').css('background-image', 'url({% static "images/Xceler8Backgroundf3f3f3.png" %})').css('background-size', 'cover');
+
+        }
+    });
+
+</script>
+<!-- Registration Styling -->
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $("#id_username").attr('placeholder', '{{form.username.label}}');
+        $("#id_email").attr('placeholder', '{{form.email.label}}');
+        $("#id_password").attr('placeholder', '{{form.password.label}}');
+        $("#id_password1").attr('placeholder', '{{form.password1.label}}');
+        $("#id_password2").attr('placeholder', '{{form.password2.label}}');
+    });
+</script>
+<!-- Upload Styling -->
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $("#id_first_name").attr('placeholder', '{{form.first_name.label}}');
+        $("#id_last_name").attr('placeholder', '{{form.last_name.label}}');
+        $("#id_pounds_lost").attr('placeholder', '{{form.pounds_lost.label}}');
+    });
+</script>
+</body>
+</html>
+
+

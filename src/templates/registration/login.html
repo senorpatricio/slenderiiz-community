@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+<div class="formBlock">
+<h3 id="welcome-title">Welcome Back</h3>
+<form method="post" action=".">{% csrf_token %}
+
+  <div class="col-sm-4">
+
+    {{ form|crispy }}
+
+{#    <input type="submit"  id="login-button" />#}
+      <button id="login-button" value="{% trans 'Log in' %}" type="submit">Log in</button></p>
+    <input type="hidden" name="next" value="{{ next }}" />
+{#  </div>#}
+{##}
+    <div id="password-choices">
+        <br>
+        <p>{% trans "Forgot password" %}? <a href="{% url "auth_password_reset" %}">{% trans "Reset it" %}</a></p>
+
+        <p>{% trans "Not member" %}? <a href="{% url "registration_register" %}">{% trans "Register" %}</a></p>
+    </div>
+
+  </div><br /><br />
+
+
+
+
+</form>
+
+
+
+</div>
+{% endblock %}

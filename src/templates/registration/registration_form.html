@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Register for an account{% endblock %}
+{% block body_class %}{{ block.super }} registration_form{% endblock %}
+
+
+{% block content_title %}
+  <h2>Register for an account</h2>
+{% endblock %}
+
+
+{% block content %}
+<div class="formBlock">
+<h3 id="registration-title">Registration</h3>
+  <form action="{% url 'registration_register' %}" method="POST">{% csrf_token %}
+
+  <div class="col-sm-4">
+
+    {{ form|crispy }}
+    <p class="submit"><button id="registration-button" type="submit">Register</button></p>
+
+
+
+    <div class="formInstructions">
+{#      <h3>Please Read</h3>#}
+      <div class="formInstructionContainer">
+
+        <h4>Why should I Register?</h4>
+
+        <p>In order to see and add posts you need to be registered.
+        Once registered you will be able to provide your social media contacts to gain further exposure.   </p>
+      </div>
+    </div>
+  </div>
+
+{#  <div class="col-sm-4">#}
+{#      <div class="formInstructions">#}
+{#      <div class="formInstructionContainer">#}
+{##}
+{#        <h4>Why should I Register?</h4>#}
+{##}
+{#        <p>In order to see posts and add your pictures you need to be registered.</p>#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#  </div>#}
+
+  </form>
+    
+
+
+
+</div>
+
+<div class="clr"></div>
+{% endblock %}
+

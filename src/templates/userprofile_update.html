@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %}
+    {{ form.media }}
+
+{% endblock head_extra %}
+
+{% block content %}
+<h1>Slenderiiz Community | Update Profile</h1>
+
+<form action="/user/send_updated_profile/" method="post">{% csrf_token %}
+
+    {{ form|crispy }}
+
+    <button type="submit" value="Update">Submit</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %} <!-- puts the title into the tab -->
+
+{% block content %}
+
+<div class="row">
+    <div class="jumbotron">
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <div class="col-sm-6">
+                <h2>Hello {% if instance.first_name %} {{ instance.first_name }} {{ instance.last_name }}
+                {% else %}
+                    {{ instance.user }}
+                {% endif %}!</h2>
+                    {% if instance.beforeimage %}
+                        <img src="{{ instance.beforeimage.url }}" class="img-responsive" />
+                    {% endif %}
+            </div>
+            <div class="col-sm-6">
+                <p>Pounds Lost: {{ instance.pounds_lost }} </p>
+                {% if instance.afterimage %}
+                    <img src="{{ instance.afterimage.url }}" class="img-responsive" />
+                {% endif %}
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

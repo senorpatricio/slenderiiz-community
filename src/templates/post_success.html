@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="jumbotron">
+            <div class="col-sm-6">
+                <h2>Hello {% if instance.first_name %}{{ instance.first_name }}
+                {% else %}
+                {{ instance.user.username }}
+                {% endif %}!</h2>
+            </div>
+            <div class="sm-col-6">
+
+                <p>Pounds Lost: {{ instance.pounds_lost }} </p>
+                {% for image in images_set %}
+                    <img src="{{ image.url }}" alt="">
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}
