@@ -24,7 +24,7 @@
 
 /* Navigation */
 .nav {
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
     height: 40px;
 }
 
@@ -94,7 +94,7 @@ input {
     border-left: none;
     border-right: none;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: transparent;
     padding-top: 9px;
 }
 input:focus{
@@ -148,7 +148,7 @@ input:focus{
 }
 
 
-#registration-button:hover, #login-button:hover, #create-post-button:hover  {
+#registration-button:hover, #login-button:hover, #create-post-button:hover {
     color: #ffffff;
     background-color: #ffc80c;
     border-color: #ffc80c;
@@ -164,6 +164,22 @@ input:focus{
     color: #ffffff;
     background-color: #ffc80c;
     border-color: #ffc80c;
+}
+
+#detail-page-button {
+    border: 1px solid #666666;
+    background-color: transparent;
+    color: #666666;
+    padding: 6px;
+}
+
+
+
+#detail-page-button:hover {
+    color: #ffffff;
+    background-color: #ffc80c;
+    border-color: #ffc80c;
+    text-decoration: none;
 }
 
 /* Community Page */

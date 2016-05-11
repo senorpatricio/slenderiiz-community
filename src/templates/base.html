@@ -25,7 +25,7 @@
     {% block head_extra %} {% endblock head_extra %}
 </head>
 <body>
-
+<div class="container">
 <ul class="nav nav-pills pull-left">
     <li role="presentation"><img src="{% static 'images/Slenderiiz_Logo_Orange.png' %}" alt="" id="header-logo"></li>
 
@@ -37,7 +37,7 @@
 </ul>
 
 <ul class="nav nav-pills pull-right">
-    <li role="presentation"><a href="{% url 'posts:list' %}">Home</a></li>
+    <li role="presentation"><a href="{% url 'posts:community' %}">Home</a></li>
     {% if not user.is_authenticated %}
     <li role="presentation"><a href="{% url 'auth_login' %}">Login</a></li>
     <li role="presentation"><a href="{% url 'registration_register' %}">Register</a></li>
@@ -62,7 +62,7 @@
 	</div>
 {% endif %}
 
-<div class="container">
+
 <div class="header">
 	
 </div>
@@ -101,12 +101,33 @@
         if(pathname.indexOf('login') > -1) {
             $('#id_username').css('margin-bottom', '35px');
             $('#hint_id_username').css('display', 'block');
-            $('body').css('background-image', 'url({% static "images/Xceler8Backgroundf3f3f3.png" %})').css('background-size', 'cover');
+            $('body').css('background-image', 'url({% static "images/Xceler8Backgroundf3f3f3.png" %})').css('background-size', 'cover')
+                    .css('background-position', 'bottom center');;
 
         }
     });
 
 </script>
+<script>
+    $(document).ready(function () {
+        var pathname = window.location.pathname;
+        if(pathname.indexOf('create') > -1) {
+            $('body').css('background-image', 'url({% static "images/BeautyBoostBackground2.jpg" %})').css('background-size', 'cover')
+                    .css('background-position', 'bottom center');
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var pathname = window.location.pathname;
+        if(pathname.indexOf('community') > -1) {
+            $('body').css('background-image', 'url({% static "images/BeautyBoostBackground.png" %})').css('background-size', 'cover')
+                    .css('background-position', 'bottom center');
+        }
+    });
+</script>
+
+
 <!-- Registration Styling -->
 <script type="text/javascript" >
     $(document).ready(function(){
@@ -122,7 +143,9 @@
     $(document).ready(function(){
         $("#id_first_name").attr('placeholder', '{{form.first_name.label}}');
         $("#id_last_name").attr('placeholder', '{{form.last_name.label}}');
-        $("#id_pounds_lost").attr('placeholder', '{{form.pounds_lost.label}}');
+        $("#div_id_pounds_lost").css('margin-top', '35px');
+        $("#id_beforeimage").css('border', 'none').css('background-color', 'transparent');
+        $("#id_afterimage").css('border', 'none').css('background-color', 'transparent');
     });
 </script>
 </body>

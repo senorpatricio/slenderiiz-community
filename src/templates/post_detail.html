@@ -2,35 +2,40 @@
 {% load crispy_forms_tags %}
 
 {% block head_title %}
-{{ instance.title }} | {{ block.super }}
+{{ instance.first_name }} | {{ block.super }}
 {% endblock head_title %} <!-- puts the title into the tab -->
 
 {% block content %}
 
 <div class="row">
-    <div class="jumbotron">
-        <div class="col-sm-8 col-sm-offset-2">
 
-            <div class="col-sm-6">
-                <h2>Hello {% if instance.first_name %} {{ instance.first_name }} {{ instance.last_name }}
-                {% else %}
-                    {{ instance.user }}
-                {% endif %}!</h2>
-                    {% if instance.beforeimage %}
-                        <img src="{{ instance.beforeimage.url }}" class="img-responsive" />
-                    {% endif %}
-            </div>
-            <div class="col-sm-6">
-                <p>Pounds Lost: {{ instance.pounds_lost }} </p>
-                {% if instance.afterimage %}
-                    <img src="{{ instance.afterimage.url }}" class="img-responsive" />
-                {% endif %}
+    <div class="col-sm-8 col-sm-offset-2">
 
-            </div>
-
-
+        <div class="col-sm-6">
+            <h2>Hello {{ instance.first_name }} {{ instance.last_name }}!</h2>
+            <p>Pounds Lost: {{ instance.pounds_lost }} </p>
+            <p>After a short review process we will include your success on our community page! In the meantime you can see other 
+            successful weight loss stories on the community page.</p>
+            <a id="detail-page-button" href="{% url 'posts:community' %}">Slenderiiz Community</a>
         </div>
+        
+        <div class="col-sm-6">
+
+            <div class="grid-beforeafter orange">
+            {% if instance.beforeimage %}
+                <div class="grid-before-photo">
+                    <img src="{{ instance.beforeimage.url }}" class="img-responsive" alt="">
+                </div>
+                <div class="grid-after-photo">
+                    <img src="{{ instance.afterimage.url }}" class="img-responsive" alt="">
+                </div>
+            {% endif %}
+            </div>
+        </div>
+
+
     </div>
+
 
 </div>
 
