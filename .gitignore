@@ -12,3 +12,6 @@ pip-selfcheck.json
 
 media_cdn/
 .git/
+bin/
+include/
+lib/
